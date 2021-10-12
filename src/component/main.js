@@ -13,7 +13,7 @@ const Main = (props) => {
     setEnteredName(event.target.value);
   };
   const Death = () => {
-    return alert("marega bsdk tu");
+    return alert("you ll die....(- _ -)");
   };
 
   return (
