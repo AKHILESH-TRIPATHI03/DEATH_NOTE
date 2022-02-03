@@ -1,20 +1,22 @@
-import Background from "./component/Background";
-import Deathname from "./component/Deathname";
 import { useState } from "react";
+import Background from "./component/Background";
+import { ShowContext } from "./component/Context";
 import Main from "./component/main";
+import ShowDeathScreen from "./component/ShowDeathScreen";
 
 function App() {
-  const [deathlist, setDeathList] = useState([]);
-  const addHandler = (dName) => {
-    setDeathList((prevDeathList) => {
-      return [...prevDeathList, { name: dName, id: Math.random().toString() }];
-    });
-  };
+  const [showProfile, setShowprofile] = useState(false);
+  const [enteredname, setEnteredName] = useState("");
+
   return (
     <>
       <Background />
 
-      <Main onAddDeath={addHandler} />
+      <ShowContext.Provider
+        value={{ enteredname, setEnteredName, setShowprofile }}
+      >
+        {showProfile ? <ShowDeathScreen /> : <Main />}
+      </ShowContext.Provider>
     </>
   );
 }
